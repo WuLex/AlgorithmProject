@@ -49,7 +49,7 @@ using System.Collections;
 #endregion
 
 #region Bloom Filter是一种快速检索数据集合的算法，它能够判断某个元素是否在集合中，具有高效、节省内存等优点，但有一定的误判率。
-int size = 1000000;
+/*int size = 1000000;
 int[] seeds = { 3, 5, 7, 11, 13, 17 };
 BloomFilter bloomFilter = new BloomFilter(size, seeds);
 
@@ -64,9 +64,11 @@ Console.WriteLine(bloomFilter.Contains("foo")); // false
                                                 //而Contains方法用于检查元素是否存在。GetHash方法用于生成哈希值。
                                                 //我们可以通过调整Bloom filter的大小和哈希种子数量来平衡误判率和空间使用。在实际应用中，
                                                 //我们可以根据数据集的大小和预期的误判率来选择适当的参数。
+*/
 #endregion
 
 #region 双层跳跃链表
+/*
 var list = new SkipList<int>();
 list.Add(1);
 list.Add(3);
@@ -89,11 +91,11 @@ Console.WriteLine($"List count: {list.Count}"); // 2
 //首先创建了一个双层跳跃链表对象list。然后使用Add方法向链表中添加三个整数元素。
 //    接下来分别使用Contains方法判断链表中是否包含1、2、3和4这四个整数。
 //    最后使用Remove方法从链表中删除2这个整数。在每个操作后，都打印出链表中元素的状态，以及链表的计数器值。
-
+*/
 #endregion
 
-
 #region 模拟实现Redis跳跃链表结构
+/*
 var skipList = new RedisSkipList<int>();
 skipList.Add(3);
 skipList.Add(1);
@@ -117,4 +119,24 @@ Console.WriteLine(skipList.Contains(4)); // 输出：False
 //在主函数中，我们创建了一个`RedisSkipList`对象，并向其中添加了一些节点，然后打印跳跃链表的所有节点。
 //    接着，我们从跳跃链表中移除一个节点，并再次打印跳跃链表的所有节点。
 //    最后，我们判断跳跃链表中是否包含某些值，并将结果打
+
+*/
+#endregion
+
+#region KMP算法 
+//CalculatePrefixTable方法用于计算模式字符串的前缀表（prefix table），
+//KMPSearch方法使用KMP算法在给定的文本字符串中搜索模式字符串。
+string text = "ABABDABACDABABCABAB";
+string pattern = "ABABCABAB";
+
+int index = KMPAlgorithm.KMPSearch(text, pattern);
+
+if (index != -1)
+{
+    Console.WriteLine("Pattern found at index " + index);
+}
+else
+{
+    Console.WriteLine("Pattern not found");
+}
 #endregion
