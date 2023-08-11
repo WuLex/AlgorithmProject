@@ -3,6 +3,7 @@ using AlgorithmSpace.Models.DFSAlg;
 using AlgorithmSpace.Models.DoubleJumpList;
 using AlgorithmSpace.Models.HuffmanAlg;
 using AlgorithmSpace.Models.RedisJumpList;
+using AlgorithmSpace.Models.RTreeAlg;
 using System.Collections;
 
 #region 二分法查找
@@ -126,17 +127,26 @@ Console.WriteLine(skipList.Contains(4)); // 输出：False
 #region KMP算法 
 //CalculatePrefixTable方法用于计算模式字符串的前缀表（prefix table），
 //KMPSearch方法使用KMP算法在给定的文本字符串中搜索模式字符串。
-string text = "ABABDABACDABABCABAB";
-string pattern = "ABABCABAB";
+//string text = "ABABDABACDABABCABAB";
+//string pattern = "ABABCABAB";
 
-int index = KMPAlgorithm.KMPSearch(text, pattern);
+//int index = KMPAlgorithm.KMPSearch(text, pattern);
 
-if (index != -1)
-{
-    Console.WriteLine("Pattern found at index " + index);
-}
-else
-{
-    Console.WriteLine("Pattern not found");
-}
+//if (index != -1)
+//{
+//    Console.WriteLine("Pattern found at index " + index);
+//}
+//else
+//{
+//    Console.WriteLine("Pattern not found");
+//}
+#endregion
+
+#region R-Tree算法
+double searchLatitude = 37.7749;
+double searchLongitude = -122.4194;
+double searchRadius = 2.0;
+
+RTreeHelper.RunRTreeSearch(searchLatitude, searchLongitude, searchRadius);
+RTreeHelper.RunRTreeTestData();
 #endregion
