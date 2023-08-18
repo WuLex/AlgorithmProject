@@ -3,6 +3,7 @@ using AlgorithmSpace.Models.DFSAlg;
 using AlgorithmSpace.Models.DoubleJumpList;
 using AlgorithmSpace.Models.HuffmanAlg;
 using AlgorithmSpace.Models.RedisJumpList;
+using AlgorithmSpace.Models.RedisPreventCachePenetration;
 using AlgorithmSpace.Models.RTreeAlg;
 using System.Collections;
 
@@ -143,10 +144,50 @@ Console.WriteLine(skipList.Contains(4)); // 输出：False
 #endregion
 
 #region R-Tree算法
-double searchLatitude = 37.7749;
-double searchLongitude = -122.4194;
-double searchRadius = 2.0;
+//double searchLatitude = 37.7749;
+//double searchLongitude = -122.4194;
+//double searchRadius = 2.0;
 
-RTreeHelper.RunRTreeSearch(searchLatitude, searchLongitude, searchRadius);
-RTreeHelper.RunRTreeTestData();
+//RTreeHelper.RunRTreeSearch(searchLatitude, searchLongitude, searchRadius);
+//RTreeHelper.RunRTreeTestData();
+#endregion
+
+#region 防止Redis缓存穿透:布隆过滤器
+//CacheHelper cachehelepr = new CacheHelper();
+//// 添加缓存数据
+//cachehelepr.Add("key1", "value1");
+//cachehelepr.Add("key2", "");
+
+//// 获取缓存数据
+//string value1 = cachehelepr.Get("key1"); // 存在于缓存中
+//Console.WriteLine("Value1: " + value1); // 输出：Value1: value1
+
+//string value3 = cachehelepr.Get("key3"); // 不存在于缓存中
+//Console.WriteLine("Value3: " + value3); // 输出：Value3: 
+
+//string value2 = cachehelepr.Get("key2"); // 存在于缓存中，但为缓存空值
+//Console.WriteLine("Value2: " + value2); // 输出：Value2:
+#endregion
+
+#region 防止Redis缓存穿透:保存空值
+CacheHelperTwo cache = new CacheHelperTwo();
+
+// 模拟将数据库查询的结果加入缓存
+string dbResult = null; // 假设数据库中不存在该数据
+if (dbResult != null)
+{
+    cache.Add("key1", dbResult);
+}
+else
+{
+    // 将空值添加到缓存，并设置适当的失效时间
+    cache.Add("key1", string.Empty);
+}
+
+// 获取缓存数据
+string value1 = cache.Get("key1");
+Console.WriteLine("Value1: " + value1); // 输出：Value1:
+
+string value2 = cache.Get("key2"); // 不存在于缓存中
+Console.WriteLine("Value2: " + value2); // 输出：Value2: 
 #endregion
