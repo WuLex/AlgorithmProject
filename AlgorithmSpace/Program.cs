@@ -6,6 +6,7 @@ using AlgorithmSpace.Models.HuffmanAlg;
 using AlgorithmSpace.Models.RedisJumpList;
 using AlgorithmSpace.Models.RedisPreventCachePenetration;
 using AlgorithmSpace.Models.RTreeAlg;
+using AlgorithmSpace.Models.EightQueensAlg;
 using System.Collections;
 
 #region 二分法查找
@@ -194,54 +195,66 @@ Console.WriteLine(skipList.Contains(4)); // 输出：False
 #endregion
 
 #region 一致性哈希算法
-//node => node 这是一个函数，用于将节点转换为其键。在这个示例中，
-//它实际上不对节点进行任何转换，直接将节点自身作为键。
-//这意味着节点的名称本身就是它们在哈希环上的标识符。
-// 创建一致性哈希对象
-var consistentHash = new ConsistentHash<string>(100, node => node);
+////node => node 这是一个函数，用于将节点转换为其键。在这个示例中，
+////它实际上不对节点进行任何转换，直接将节点自身作为键。
+////这意味着节点的名称本身就是它们在哈希环上的标识符。
+//// 创建一致性哈希对象
+//var consistentHash = new ConsistentHash<string>(100, node => node);
 
-// 添加节点
-consistentHash.Add("Node1");
-consistentHash.Add("Node2");
-consistentHash.Add("Node3");
+//// 添加节点
+//consistentHash.Add("Node1");
+//consistentHash.Add("Node2");
+//consistentHash.Add("Node3");
+//for (int i = 0; i < 10; i++)
+//{
+//    string key = $"key{i}";
+//    // 查找键对应的节点
+//    string node = consistentHash.GetNode(key);
+//    Console.WriteLine($"Key'{key}'映射到节点'{node}'。");
+//}
+//#region 反向查找逻辑，查找节点对应的键
+//string nodeToFind = "Node2";
+//var keys = consistentHash.GetKeysForNode(nodeToFind);
+//Console.WriteLine($"'{nodeToFind}'节点上有映射的Keys集合 :");
+//foreach (var key in keys)
+//{
+//   Console.WriteLine(key);
+//}
 
-for (int i = 0; i < 10; i++)
-{
-    string key = $"key{i}";
-    // 查找键对应的节点
-    string node = consistentHash.GetNode(key);
-    Console.WriteLine($"Key'{key}'映射到节点'{node}'。");
-}
-#region 反向查找逻辑，查找节点对应的键
-string nodeToFind = "Node2";
-var keys = consistentHash.GetKeysForNode(nodeToFind);
-Console.WriteLine($"'{nodeToFind}'节点上有映射的Keys集合 :");
-foreach (var key in keys)
-{
-   Console.WriteLine(key);
-}
+//#endregion
+
+//// 删除节点Node2
+//consistentHash.Remove("Node2");
+//#region 删除节点Node2后,再次映射
+//for (int i = 0; i < 10; i++)
+//{
+//    string key = $"secondkey{i}";
+//    // 查找键对应的节点
+//    string node = consistentHash.GetNode(key);
+//    Console.WriteLine($"Secondkey'{key}'映射到节点'{node}'。");
+//}
+
+//string secondnodeToFind = "Node3";
+//var secondkeys = consistentHash.GetKeysForNode(secondnodeToFind);
+//Console.WriteLine($"'{secondnodeToFind}'节点上有映射的Secondkeys集合 :");
+//foreach (var key in secondkeys)
+//{
+//    Console.WriteLine(key);
+//}
+//#endregion
 
 #endregion
 
-// 删除节点Node2
-consistentHash.Remove("Node2");
-
-#region 删除节点Node2后,再次映射
-for (int i = 0; i < 10; i++)
-{
-    string key = $"secondkey{i}";
-    // 查找键对应的节点
-    string node = consistentHash.GetNode(key);
-    Console.WriteLine($"Secondkey'{key}'映射到节点'{node}'。");
-}
-
-string secondnodeToFind = "Node3";
-var secondkeys = consistentHash.GetKeysForNode(secondnodeToFind);
-Console.WriteLine($"'{secondnodeToFind}'节点上有映射的Secondkeys集合 :");
-foreach (var key in secondkeys)
-{
-    Console.WriteLine(key);
-}
-#endregion
+#region 八皇后算法
+//在 SolveQueens(0) 中的0表示开始放置皇后的行号。
+//这里的0意味着从第一行（索引为0的行）开始尝试放置皇后。
+//递归函数 SolveQueens 通过不断增加 row 的值来逐行放置皇后。
+//你可以使用不同的行号作为参数调用 SolveQueens，
+//例如 SolveQueens(1) 或 SolveQueens(2)，
+//以从棋盘的不同行开始寻找解决方案。但通常情况下，
+//我们从第一行开始（row = 0）来寻找八皇后问题的解决方案，
+//因为这是问题的标准起点。
+EightQueens.SolveQueens(0);
+Console.WriteLine("共有解决方案数量: " + EightQueens.solutionCount);
 
 #endregion
