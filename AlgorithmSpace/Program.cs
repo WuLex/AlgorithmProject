@@ -1,4 +1,5 @@
 ﻿using AlgorithmSpace;
+using AlgorithmSpace.Models.ConsistentHashAlg;
 using AlgorithmSpace.Models.DFSAlg;
 using AlgorithmSpace.Models.DoubleJumpList;
 using AlgorithmSpace.Models.HuffmanAlg;
@@ -170,24 +171,77 @@ Console.WriteLine(skipList.Contains(4)); // 输出：False
 #endregion
 
 #region 防止Redis缓存穿透:保存空值
-CacheHelperTwo cache = new CacheHelperTwo();
+//CacheHelperTwo cache = new CacheHelperTwo();
 
-// 模拟将数据库查询的结果加入缓存
-string dbResult = null; // 假设数据库中不存在该数据
-if (dbResult != null)
+//// 模拟将数据库查询的结果加入缓存
+//string dbResult = null; // 假设数据库中不存在该数据
+//if (dbResult != null)
+//{
+//    cache.Add("key1", dbResult);
+//}
+//else
+//{
+//    // 将空值添加到缓存，并设置适当的失效时间
+//    cache.Add("key1", string.Empty);
+//}
+
+//// 获取缓存数据
+//string value1 = cache.Get("key1");
+//Console.WriteLine("Value1: " + value1); // 输出：Value1:
+
+//string value2 = cache.Get("key2"); // 不存在于缓存中
+//Console.WriteLine("Value2: " + value2); // 输出：Value2: 
+#endregion
+
+#region 一致性哈希算法
+//node => node 这是一个函数，用于将节点转换为其键。在这个示例中，
+//它实际上不对节点进行任何转换，直接将节点自身作为键。
+//这意味着节点的名称本身就是它们在哈希环上的标识符。
+// 创建一致性哈希对象
+var consistentHash = new ConsistentHash<string>(100, node => node);
+
+// 添加节点
+consistentHash.Add("Node1");
+consistentHash.Add("Node2");
+consistentHash.Add("Node3");
+
+for (int i = 0; i < 10; i++)
 {
-    cache.Add("key1", dbResult);
+    string key = $"key{i}";
+    // 查找键对应的节点
+    string node = consistentHash.GetNode(key);
+    Console.WriteLine($"Key'{key}'映射到节点'{node}'。");
 }
-else
+#region 反向查找逻辑，查找节点对应的键
+string nodeToFind = "Node2";
+var keys = consistentHash.GetKeysForNode(nodeToFind);
+Console.WriteLine($"'{nodeToFind}'节点上有映射的Keys集合 :");
+foreach (var key in keys)
 {
-    // 将空值添加到缓存，并设置适当的失效时间
-    cache.Add("key1", string.Empty);
+   Console.WriteLine(key);
 }
 
-// 获取缓存数据
-string value1 = cache.Get("key1");
-Console.WriteLine("Value1: " + value1); // 输出：Value1:
+#endregion
 
-string value2 = cache.Get("key2"); // 不存在于缓存中
-Console.WriteLine("Value2: " + value2); // 输出：Value2: 
+// 删除节点Node2
+consistentHash.Remove("Node2");
+
+#region 删除节点Node2后,再次映射
+for (int i = 0; i < 10; i++)
+{
+    string key = $"secondkey{i}";
+    // 查找键对应的节点
+    string node = consistentHash.GetNode(key);
+    Console.WriteLine($"Secondkey'{key}'映射到节点'{node}'。");
+}
+
+string secondnodeToFind = "Node3";
+var secondkeys = consistentHash.GetKeysForNode(secondnodeToFind);
+Console.WriteLine($"'{secondnodeToFind}'节点上有映射的Secondkeys集合 :");
+foreach (var key in secondkeys)
+{
+    Console.WriteLine(key);
+}
+#endregion
+
 #endregion
