@@ -8,3 +8,9 @@
 
 ### 八皇后问题
 ![code](https://raw.githubusercontent.com/WuLex/UsefulPicture/main/algorithmimgs/eightqueens.png)
+
+### R-Tree算法
+![code](https://raw.githubusercontent.com/WuLex/UsefulPicture/main/algorithmimgs/rtree.png)
+
+### ELO算法
+![code](https://raw.githubusercontent.com/WuLex/UsefulPicture/main/algorithmimgs/elo.png)
