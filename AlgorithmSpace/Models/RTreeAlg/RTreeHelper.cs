@@ -41,7 +41,7 @@ namespace AlgorithmSpace.Models.RTreeAlg
             rTree.Insert(new Restaurant { Name = "餐厅 3", Latitude = 37.7955, Longitude = -122.3940 });
             rTree.Insert(new Restaurant { Name = "餐厅 4", Latitude = 37.7836, Longitude = -122.4192 });
             rTree.Insert(new Restaurant { Name = "餐厅 5", Latitude = 37.7689, Longitude = -122.4331 });
-             
+
             // 搜索 20 公里内的餐厅
             List<Restaurant> nearbyRestaurants = rTree.Search(37.7749, -122.4194, 20.0);
 

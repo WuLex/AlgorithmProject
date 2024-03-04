@@ -1,6 +1,6 @@
 ﻿using AlgorithmSpace.Models.DiffAlg;
 
-namespace AlgorithmSpace
+namespace AlgorithmSpace.Logic
 {
     public static class DiffAlgorithm
     {

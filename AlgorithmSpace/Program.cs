@@ -5,23 +5,25 @@ using AlgorithmSpace.Models.DoubleJumpList;
 using AlgorithmSpace.Models.HuffmanAlg;
 using AlgorithmSpace.Models.RedisJumpList;
 using AlgorithmSpace.Models.RedisPreventCachePenetration;
-using AlgorithmSpace.Models.RTreeAlg;
 using AlgorithmSpace.Models.EightQueensAlg;
 using System.Collections;
+using AlgorithmSpace.Models.ELOAlg;
+using AlgorithmSpace.Models.RTreeAlg;
+using AlgorithmSpace.Logic;
 
 #region 二分法查找
-//int[] arr = { 1, 3, 5, 7, 9 };
-//int target = 5;
-//int result = BinarySearch.Search(arr, target);
+int[] arr = { 1, 3, 5, 7, 9 };
+int target = 5;
+int result = BinarySearch.Search(arr, target);
 
-//if (result == -1)
-//{
-//    Console.WriteLine("Element not found in array");
-//}
-//else
-//{
-//    Console.WriteLine("Element found at index " + result);
-//}
+if (result == -1)
+{
+    Console.WriteLine("Element not found in array");
+}
+else
+{
+    Console.WriteLine("Element found at index " + result);
+}
 #endregion
 
 #region 哈夫曼树使用示例
@@ -254,7 +256,43 @@ Console.WriteLine(skipList.Contains(4)); // 输出：False
 //以从棋盘的不同行开始寻找解决方案。但通常情况下，
 //我们从第一行开始（row = 0）来寻找八皇后问题的解决方案，
 //因为这是问题的标准起点。
-EightQueens.SolveQueens(0);
-Console.WriteLine("共有解决方案数量: " + EightQueens.solutionCount);
+//EightQueens.SolveQueens(0);
+//Console.WriteLine("共有解决方案数量: " + EightQueens.solutionCount);
 
+#endregion
+
+#region 王者荣耀（或其他竞技游戏）的匹配算法通常基于ELO算法
+//Matchmaking matchmaking = new Matchmaking();
+
+//Player player1 = new Player(1, 1000);
+//Player player2 = new Player(2, 1000);
+//Player player3 = new Player(3, 1000);
+
+//matchmaking.AddPlayer(player1);
+//matchmaking.AddPlayer(player2);
+//matchmaking.AddPlayer(player3);
+
+//// 玩家1与玩家2匹配，玩家1赢得比赛
+//matchmaking.MatchPlayers(player1, player2, true);
+
+//// 输出更新后的ELO等级
+//Console.WriteLine($"Player 1 ELO: {player1.Elo}");
+//Console.WriteLine($"Player 2 ELO: {player2.Elo}");
+
+//// 玩家1与玩家3匹配，玩家3赢得比赛
+//matchmaking.MatchPlayers(player1, player3, false);
+
+//// 输出更新后的ELO等级
+//Console.WriteLine($"Player 1 ELO: {player1.Elo}");
+//Console.WriteLine($"Player 3 ELO: {player3.Elo}");
+
+
+//Player playerONE = new Player(1, 1200);
+//Player playerTWO = new Player(2, 1000);
+
+//// 玩家1赢得比赛
+//EloCalculator.UpdateRatings(playerONE, playerTWO, true);
+
+//Console.WriteLine($"玩家1新的ELO分数：{playerONE.Elo}");
+//Console.WriteLine($"玩家2新的ELO分数：{playerTWO.Elo}");
 #endregion

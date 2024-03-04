@@ -1,4 +1,4 @@
-﻿namespace AlgorithmSpace
+﻿namespace AlgorithmSpace.Logic
 {
     public class RedPacketGenerator
     {

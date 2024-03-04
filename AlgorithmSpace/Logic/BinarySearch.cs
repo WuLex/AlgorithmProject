@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlgorithmSpace
+namespace AlgorithmSpace.Logic
 {
     public class BinarySearch
     {
@@ -35,5 +35,5 @@ namespace AlgorithmSpace
         }
     }
 
-  
+
 }

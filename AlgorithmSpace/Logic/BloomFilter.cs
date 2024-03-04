@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlgorithmSpace
+namespace AlgorithmSpace.Logic
 {
     public class BloomFilter
     {
@@ -16,7 +16,7 @@ namespace AlgorithmSpace
         public BloomFilter(int size, int[] seeds)
         {
             this.size = size;
-            this.bitArray = new BitArray(size);
+            bitArray = new BitArray(size);
             this.seeds = seeds;
         }
 
